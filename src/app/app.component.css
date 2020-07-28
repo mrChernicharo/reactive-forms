@@ -5,3 +5,11 @@
 span.help-block {
   color: tomato;
 }
+
+span.help-block.form-info {
+  color: #2447b0;
+}
+
+span.help-block.form-ok {
+  color: green;
+}

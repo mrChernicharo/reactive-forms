@@ -32,18 +32,30 @@
               formControlName="gender"
               [value]="gender">{{ gender }}
           </label>
-        <div class="form-control">
-          <h4>Your Hobbies</h4>
-          <button
-           class="btn ntn-primary"
-           type="button"
-           (click)="onAddHobbie()">Add Hobby</button>
         </div>
 
+        <div formArrayName="hobbies">
+          <h4>Your Hobbies</h4>
+          <!-- <div class="form-group" *ngFor="let hobby of signupForm.get('hobbies').control"> -->
+          <button class="btn btn-primary" type="button" (click)="onAddHobbie()">Add Hobby</button>
+          <div class="form-group" *ngFor="let hobby of getControls(); let i = index">
+
+            <input type="text" class="form-control" [formControlName]="i">
+            <span class="help-block form-info" *ngIf="!hobby.valid">Write that damn hobby name, will ya?</span>
+
+          </div>
         </div>
+        <br>
         <span *ngIf="!signupForm.valid && signupForm.touched"
         class="help-block">You ain't finished yet breda 💆🏾‍♂️</span>
-        <button class="btn btn-primary" type="submit">Submit</button>
+
+        <span *ngIf="signupForm.valid && signupForm.dirty"
+        class="help-block form-ok">Form Ok!</span>
+
+        <button
+          [disabled]="signupForm.invalid"
+          class="btn btn-success"
+          type="submit">Submit</button>
       </form>
 
     </div>
